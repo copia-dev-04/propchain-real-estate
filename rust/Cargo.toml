@@ -1,0 +1,53 @@
+[package]
+name        = "propchain-tools"
+version     = "0.1.0"
+edition     = "2021"
+authors     = ["PropChain <dev@propchain.io>"]
+description = "Off-chain CLI tooling for PropChain: oracle, yield calculator, holder snapshot"
+license     = "MIT"
+
+# NOTE: This crate is STANDALONE and is NOT imported or used by the Next.js
+# web application. Build and run it independently (see README.md → Rust Tooling).
+
+[[bin]]
+name = "propchain-tools"
+path = "src/main.rs"
+
+[lib]
+name = "propchain_tools"
+path = "src/lib.rs"
+
+[dependencies]
+# Async runtime
+tokio          = { version = "1.38", features = ["full"] }
+
+# CLI argument parsing
+clap           = { version = "4.5", features = ["derive"] }
+
+# HTTP client (fetches valuation data from off-chain APIs)
+reqwest        = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+
+# JSON (de)serialisation
+serde          = { version = "1.0", features = ["derive"] }
+serde_json     = "1.0"
+
+# Ethereum / EVM interaction (read contract state, send transactions)
+ethers         = { version = "2.0", features = ["rustls"] }
+
+# .env file loading (reads RPC_URL, DEPLOYER_PRIVATE_KEY, etc.)
+dotenvy        = "0.15"
+
+# Decimal arithmetic for financial calculations (avoids float rounding errors)
+rust_decimal   = { version = "1.35", features = ["serde-with-str"] }
+rust_decimal_macros = "1.35"
+
+# Logging
+tracing        = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+anyhow         = "1.0"
+thiserror      = "1.0"
+
+[dev-dependencies]
+tokio-test = "0.4"
